@@ -1,5 +1,6 @@
 # memorygame
 A little game for training memory
+https://flowcad.github.io/memorygame/
 
 ## Todo
 * Compter le score
