@@ -1,10 +1,12 @@
-var MatchGame = {};
+var MatchGame = {},
+  myScore = 0;
 
 // Sets up a new game after HTML document has loaded. Renders a 4x4 board of cards.
 $(document).ready(function () {
   var $game = $('#game');
   var values = MatchGame.generateCardValues();
   MatchGame.renderCards(values, $game);
+  $('#score').html(myScore);
 });
 
 // Generates and returns an array of matching card values.
@@ -95,7 +97,9 @@ MatchGame.flipCard = function ($card, $game) {
           .text('')
           .data('isFlipped', false);
       }, 350);
+      myScore++;
     }
     $game.data('flippedCards', []);
+    $('#score').html(myScore);
   }
 };
