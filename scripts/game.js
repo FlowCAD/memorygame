@@ -1,5 +1,6 @@
 var MatchGame = {},
-  myScore = 0;
+  myScore = 0,
+  cardToMatch = 0;
 
 // Sets up a new game after HTML document has loaded. Renders a 4x4 board of cards.
 $(document).ready(function () {
@@ -7,6 +8,7 @@ $(document).ready(function () {
   var values = MatchGame.generateCardValues();
   MatchGame.renderCards(values, $game);
   $('#score').html(myScore);
+  $('#matching').html(cardToMatch);
 });
 
 // Generates and returns an array of matching card values.
@@ -14,6 +16,7 @@ MatchGame.generateCardValues = function () {
   var sequentialValues = [];
 
   for (var value = 1; value <= 8; value++) {
+    cardToMatch++;
     sequentialValues.push(value);
     sequentialValues.push(value);
   }
@@ -80,6 +83,7 @@ MatchGame.flipCard = function ($card, $game) {
 
   if (flippedCards.length === 2) {
     if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+      cardToMatch--;
       var matchCss = {
         backgroundColor: 'rgb(153, 153, 153)',
         color: 'rgb(204, 204, 204)'
@@ -101,5 +105,9 @@ MatchGame.flipCard = function ($card, $game) {
     }
     $game.data('flippedCards', []);
     $('#score').html(myScore);
+    $('#matching').html(cardToMatch);
+    if (cardToMatch === 0) {
+      alert('Bien joué !');
+    }
   }
 };
