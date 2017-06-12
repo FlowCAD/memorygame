@@ -57,8 +57,6 @@
 
     function init() {
         SetGlobals();
-        InitializeButton();
-        // InitializeConfetti();
 
         $(window).resize(function () {
             W = window.innerWidth;
@@ -67,14 +65,6 @@
             canvas.height = H;
         });
 
-    }
-
-    // $(document).ready(init());
-
-    function InitializeButton() {
-        $('#startConfetti').click(InitializeConfetti);
-        $('#stopConfetti').click(DeactivateConfetti);
-        $('#restartConfetti').click(RestartConfetti);
     }
 
     function SetGlobals() {
@@ -220,7 +210,7 @@
     })();
     
     this.init = init;
-    this.start = InitializeConfetti;
+    this.go = InitializeConfetti;
     this.stop = DeactivateConfetti;
     this.restart = RestartConfetti;
   }
