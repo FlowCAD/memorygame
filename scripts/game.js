@@ -1,9 +1,11 @@
 var MatchGame = {},
   myScore = 0,
-  cardToMatch = 0;
+  cardToMatch = 0,
+  reloaded = false;
 
 // Sets up a new game after HTML document has loaded. Renders a 4x4 board of cards.
 $(document).ready(function () {
+  $.confetti.init();
   initGame();
 });
 
@@ -15,9 +17,13 @@ initGame = function () {
   MatchGame.renderCards(values, $game);
   $('#score').html(myScore);
   $('#matching').html(cardToMatch);
-  goConfetti(0);
 }
 
+reloadGame = function () {
+  $.confetti.stop();
+  reloaded = true;
+  initGame();
+}
 // Generates and returns an array of matching card values.
 MatchGame.generateCardValues = function () {
   var sequentialValues = [];
@@ -114,23 +120,7 @@ MatchGame.flipCard = function ($card, $game) {
     $('#score').html(myScore);
     $('#matching').html(cardToMatch);
     if (cardToMatch === 0) {
-      //alert('Bien joué !');
-      goConfetti(1);
+      (reloaded === false) ? $.confetti.go() : $.confetti.restart();
     }
   }
 };
-
-// Against scope's problems
-goConfetti = function (confeCode) {
-  switch (confeCode) {
-    case 0:
-      $.confetti.stop();
-      break;
-    case 1:
-      $.confetti.init();
-      $.confetti.start();
-      break;
-    default:
-      console.log("confetti problem...");
-  }
-}
