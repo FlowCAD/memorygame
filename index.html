@@ -14,7 +14,7 @@
 <body style="background-color:#EEF4D3;">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-xs-12" style="z-index:20000;">
+            <div class="col-md-3 col-xs-12" style="z-index:100;">
                 <h1>Petit jeu de mémoire</h1>
                 <h2>Les règles</h2>
                 <p>Cliquez sur une carte pour la retourner et révéler le chiffre dessus. Cliquez sur une seconde carte pour
@@ -26,7 +26,7 @@
                 <p>Nombre de tentatives râtées : <span id="score"></span></p>
                 <p>Nombre de paires restantes : <span id="matching"></span></p>
                 <br /><br />
-                <button type="button" class="btn btn-primary" onclick="initGame();">Rejouer</button>
+                <button type="button" class="btn btn-primary" onclick="reloadGame();">Rejouer</button>
             </div>
             <div class="col-md-9 col-xs-12" id="game"></div>
         </div>
